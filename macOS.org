@@ -73,6 +73,9 @@ code --install-extension haskell.haskell
 code --install-extension hoovercj.haskell-linter
 #+END_SRC
 ** Zoom
+** itsyCal
+** TODO Magnet?
+** TODO UTM
 * Services
 ** DONE Syncthing
 - Install official Mac image from website.
