@@ -1,0 +1,56 @@
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Customize to your needs...
+
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit -D
+  # Might need to do `compinit -D` to get cargo and rustup completions to work
+fi
+
+
+export PATH="/etc/profiles/per-user/sayantan/bin:/Users/sayantan/.nix-profile/bin:/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin"
+
+# Cargo path
+path=('/Users/sayantan/.cargo/bin' $path)
+
+# Elan path
+path=('/Users/sayantan/.elan/bin' $path)
+
+# Source fzf completion file
+if [ -n "${commands[fzf-share]}" ]; then
+  source "$(fzf-share)/key-bindings.zsh"
+  source "$(fzf-share)/completion.zsh"
+fi
+
+export TERM=screen-256color
+alias fix_term="export TERM=xterm-256color"
+
+# Quick pass
+#alias qpass="/Users/sayantan/Sync/configs/mac-mini/scripts/password-prompt.sh"
+#alias spass="/Users/sayantan/Sync/configs/mac-mini/scripts/password-prompt-no-copy.sh"
+
+# Alias emacsclient
+#alias ec="emacsclient -n -c"
+#alias ect="emacsclient -nw -c"
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+[ -f "/Users/sayantan/.ghcup/env" ] && source "/Users/sayantan/.ghcup/env" # ghcup-env
+
+# Open VS Code from terminal
+code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
