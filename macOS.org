@@ -43,6 +43,7 @@ Use nix to get project specific haskell configs, rather than a global setup.
 Install MacTeX.
 ** TODO Direnv?
 Figure out if direnv is the right thing to use for project specific setups.
+** TODO Set up Linux VM
 * Installing GUI applications
 ** Firefox
 Get rid of the front page clutter and compactify the layout. Then
