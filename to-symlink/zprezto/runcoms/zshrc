@@ -22,7 +22,13 @@ then
 fi
 
 
-export PATH="/etc/profiles/per-user/sayantan/bin:/Users/sayantan/.nix-profile/bin:/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin"
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin"
+
+# Nix related path directories
+path=('/etc/profiles/per-user/sayantan/bin' $path)
+path=('/Users/sayantan/.nix-profile/bin' $path)
+path=('/run/current-system/sw/bin' $path)
+path=('/nix/var/nix/profiles/default/bin' $path)
 
 # Cargo path
 path=('/Users/sayantan/.cargo/bin' $path)
