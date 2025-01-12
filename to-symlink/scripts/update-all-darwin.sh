@@ -10,6 +10,8 @@ nix-collect-garbage -d
 
 # Rust toolchain update
 echo "Updating Rust toolchain"
+rustup self update
+rustup update
 
 # Lean toolchain update
 echo "Updating Lean toolchain"

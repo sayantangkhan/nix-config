@@ -41,8 +41,10 @@ Follow the instructions on the rustup website
 Use nix to get project specific haskell configs, rather than a global setup.
 ** LaTeX
 Install MacTeX.
+** TODO Direnv?
+Figure out if direnv is the right thing to use for project specific setups.
 * Installing GUI applications
-** DONE Firefox
+** Firefox
 Get rid of the front page clutter and compactify the layout. Then
 install the following extensions.
 - Firefox Multi-account containers
@@ -54,13 +56,13 @@ install the following extensions.
 Create 2 containers, Personal and Banking.
 
 Also, make firefox the default browser.
-** DONE Chrome
+** Chrome
 Install chrome from the website, and log into the `umich.edu` account.
-** DONE Zotero
+** Zotero
 Install Zotero from the website (might have to install Rosetta), and set up syncing from the GUI.
-** WAITING Emacs
+** Emacs
 Symlink the emacs config, and install all the packages it needs.
-** DONE VSCode
+** VSCode
 Install VSCode from the App store. Then install the following addons
 #+BEGIN_SRC sh
 code --install-extension bungcip.better-toml
