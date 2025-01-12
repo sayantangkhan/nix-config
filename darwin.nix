@@ -16,6 +16,7 @@
         "emacs"
         "ghostty"
         "gnucash"
+        "font-source-code-pro"
       ];
     };
 

@@ -1,1 +1,1 @@
-flake-mac-mini.nix
+flake-macbook-pro.nix

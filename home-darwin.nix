@@ -42,6 +42,7 @@
     wget
     vim
     pass
+    gnupg
     pinentry_mac
     tree
     htop

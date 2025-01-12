@@ -1,0 +1,110 @@
+#+STARTUP: indent
+#+STARTUP: overview
+#+TITLE: Guide to setting up a MacOS workstation
+
+* Installing toolchains
+** Homebrew
+*** Installation
+Run the following command.
+#+BEGIN_SRC sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+#+END_SRC
+*** Brew commands (deprecate in favor of nix-darwin)
+- Updating homebrew and the installed packages definitions (formulae)
+  #+BEGIN_SRC sh
+  brew update
+  #+END_SRC
+- Listing outdated packages
+  #+BEGIN_SRC sh
+  brew outdated
+  #+END_SRC
+- Upgrading packages
+  #+BEGIN_SRC sh
+  brew upgrade
+  #+END_SRC
+** Nix-darwin and home-manager
+*** Install nix from the determinate systems installer
+Will need to allow terminal full access to the filesystem.
+*** Clone the config flake from git repo
+#+BEGIN_SRC sh
+git clone git@github.com:sayantangkhan/nix-config.git
+# Switching to the flake
+nix run nix-darwin -- switch --flake nix-config
+#+END_SRC
+The flake exposes some scripts as binaries in the path.
+- ~nix-switch~
+- ~nix-update~
+- ~all-update~
+** Rust
+Follow the instructions on the rustup website
+** Haskell
+Use nix to get project specific haskell configs, rather than a global setup.
+** LaTeX
+Install MacTeX.
+* Installing GUI applications
+** DONE Firefox
+Get rid of the front page clutter and compactify the layout. Then
+install the following extensions.
+- Firefox Multi-account containers
+- uBlock Origin
+- Zotero connector
+- PassFF
+- Reddit Enhancement Suite
+
+Create 2 containers, Personal and Banking.
+
+Also, make firefox the default browser.
+** DONE Chrome
+Install chrome from the website, and log into the `umich.edu` account.
+** DONE Zotero
+Install Zotero from the website (might have to install Rosetta), and set up syncing from the GUI.
+** WAITING Emacs
+Symlink the emacs config, and install all the packages it needs.
+** DONE VSCode
+Install VSCode from the App store. Then install the following addons
+#+BEGIN_SRC sh
+code --install-extension bungcip.better-toml
+code --install-extension matklad.rust-analyzer
+code --install-extension vscodevim.vim
+code --install-extension haskell.haskell
+code --install-extension hoovercj.haskell-linter
+#+END_SRC
+** Zoom
+* Services
+** DONE Syncthing
+- Install official Mac image from website.
+- Go to localhost:8384, and configure it to sync to centos-crimson:8384.
+** DONE Tailscale
+Follow the instructions on [[https://tailscale.com/download/mac][this website]].
+** DONE Syncthing
+** DONE Pass
+Use the ~nixpkgs~ version of ~pass~. Copy over the password store and import the gpg keys.
+Make sure copying works correctly, and the firefox plugin does too.
+* Other
+** DONE SSH keys
+Generate a new SSH keypair, and update all online services with this key.
+- Gitlab
+- Github
+- Digital Ocean
+** DONE Update symlinks
+- graduate_work
+- OrgMode
+- teaching
+- Zotero
+#+BEGIN_SRC sh
+ln -sv Sync/graduate-work ~/
+ln -sv Sync/OrgMode ~/
+ln -sv Sync/teaching ~/
+ln -sv Sync/Zotero ~/
+#+END_SRC
+* Removing extraneous applications
+* MacOS specific tweaks
+** DONE Font smoothing
+Disable font smoothing.
+#+BEGIN_SRC sh
+defaults -currentHost write -g AppleFontSmooting -int 0
+#+END_SRC
+** Rectangle
+For better window snapping
+** DONE Remove preinstalled applications
+Open launcher and press `option`.
