@@ -2,7 +2,7 @@
 
 # Back up home directory
 echo "Backing up before updating"
-sudo btrbk -c /home/sayantan/Sync/configs/t420s-workstation/btrbk.conf -v run
+sudo btrbk -c /home/sayantan/btrbk/btrbk.conf -v run
 echo "Finished backup"
 sleep 2
 

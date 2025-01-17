@@ -78,6 +78,11 @@
       target = "/home/sayantan/.config/systemd/user/config-backup.timer";
     };
 
+    "btrbk-config" = {
+       source = ./to-symlink/linux-dotfiles/btrbk-t420s.conf;
+       target = "/home/sayantan/.config/btrbk/btrbk.conf";
+    };
+
     "git-config" = {
       source = ./to-symlink/linux-dotfiles/git-config;
       target = "/home/sayantan/.config/git/config";
@@ -211,11 +216,9 @@
     # aspellDicts.en-science
 
     # Shell scripts
-    (writeShellScriptBin "nix-switch" (builtins.readFile ./to-symlink/scripts/nix-switch-darwin.sh))
-    (writeShellScriptBin "nix-update" (builtins.readFile ./to-symlink/scripts/nix-update-and-switch-darwin.sh))
-    (writeShellScriptBin "all-update" (builtins.readFile ./to-symlink/scripts/update-all-darwin.sh))
-    (writeShellScriptBin "qpass" (builtins.readFile ./to-symlink/scripts/password-prompt.sh))
-    (writeShellScriptBin "spass" (builtins.readFile ./to-symlink/scripts/password-prompt-no-copy.sh))
+    (writeShellScriptBin "nix-switch" (builtins.readFile ./to-symlink/scripts/nix-switch-linux.sh))
+    (writeShellScriptBin "nix-update" (builtins.readFile ./to-symlink/scripts/nix-update-and-switch-linux.sh))
+    (writeShellScriptBin "all-update" (builtins.readFile ./to-symlink/scripts/update-all-linux.sh))
 
 
   ];
