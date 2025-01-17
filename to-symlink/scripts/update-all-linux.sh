@@ -2,7 +2,7 @@
 
 # Back up home directory
 echo "Backing up before updating"
-sudo btrbk -c /home/sayantan/btrbk/btrbk.conf -v run
+sudo --preserve-env=PATH env btrbk -c /home/sayantan/.configs/btrbk/btrbk.conf -v run
 echo "Finished backup"
 sleep 2
 
@@ -17,7 +17,7 @@ sleep 2
 echo "Updating nix"
 
 nix flake update --flake  /home/sayantan/Sync/configs/nix-config
-nix run nix-darwin -- switch --flake /home/sayantan/Sync/configs/nix-config
+home-manager switch --flake /home/sayantan/Sync/configs/nix-config
 nix-collect-garbage -d
 
 # Rust toolchain update
