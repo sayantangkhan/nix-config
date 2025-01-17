@@ -24,5 +24,6 @@ palette = 14=#83e9e4
 palette = 15=#ffffff
 
 font-thicken = true
+font-size = 14
 
 command=/etc/profiles/per-user/sayantan/bin/tmux attach || tmux

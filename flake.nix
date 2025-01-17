@@ -33,17 +33,21 @@
       ];
     };
     # Home config for my linux systems
-    homeConfigurations = {
-      "sayantan@t420s-server" = home-manager.lib.homeManagerConfiguration {
-        configuration = {pkgs, ...}: {
-          modules = [ ./home-linux-t420s.nix ];
-        };
+    homeConfigurations = let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+      in
+        {
+          "sayantan@t420s-server" = home-manager.lib.homeManagerConfiguration {
+            configuration = {pkgs, ...}: {
+              modules = [ ./home-linux-t420s.nix ];
+            };
 
-        system = "x86_64-linux";
-        homeDirectory = "/home/sayantan";
-        username = "sayantan";
-        stateVersion = "24.11";
-      };
-    };
+            system = "x86_64-linux";
+            homeDirectory = "/home/sayantan";
+            username = "sayantan";
+            stateVersion = "24.11";
+          };
+        };
   };
 }
