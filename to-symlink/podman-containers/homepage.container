@@ -1,0 +1,19 @@
+[Unit]
+Description=The homepage container
+After=local-fs.target
+
+[Container]
+Image=ghcr.io/gethomepage/homepage:latest
+ContainerName=homepage
+Volume=/home/sayantan/configs/homepage:/config
+Volume=/Vault2048:/Vault2048
+Volume=/Vault1024:/Vault1024
+PodmanArgs=--privileged -d -p 3000:3000
+
+[Service]
+Environment=PUID=1000
+Environment=PGID=1000
+
+[Install]
+# Start by default on boot
+WantedBy=multi-user.target default.target

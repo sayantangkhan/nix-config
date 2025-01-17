@@ -1,0 +1,14 @@
+[Unit]
+Description=The podgrab container
+After=local-fs.target
+
+[Container]
+Image=docker.io/akhilrex/podgrab
+ContainerName=podgrab
+Volume=/Vault2048/Podcasts:/assets
+Volume=/home/sayantan/configs/podgrab:/config
+PodmanArgs=--privileged -d -p 8080:8080
+
+[Install]
+# Start by default on boot
+WantedBy=multi-user.target default.target

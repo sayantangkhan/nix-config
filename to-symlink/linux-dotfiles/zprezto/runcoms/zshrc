@@ -1,0 +1,93 @@
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# This is to ensure that additional functions are loaded
+export fpath=( ~/.nix-profile/share/zsh/site-functions "${fpath[@]}" )
+# export fpath=( ~/.zfunc "${fpath[@]}" )
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Customize to your needs...
+path=('/home/sayantan/bin:/home/sayantan/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games' $path)
+
+# Elan path
+path=('/home/sayantan/.elan/bin' $path)
+
+# Cargo path
+path=('/home/sayantan/.cargo/bin' $path)
+
+# Haskell paths
+path=('/home/sayantan/.cabal/bin:/home/sayantan/.ghcup/bin' $path)
+
+# export MANPATH="/usr/local/man:$MANPATH"
+# # Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# Source fzf completion file
+source $HOME/.zprezto/modules/fzf/completion.zsh
+
+source $HOME/.bash_aliases
+export TERM=screen-256color
+export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
+alias fix_term="export TERM=xterm-256color"
+if [ -e /home/sayantan/.nix-profile/etc/profile.d/nix.sh  ]; then . /home/sayantan/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+function start_tmux() {
+    if type tmux &> /dev/null; then
+	#if not inside a tmux session, and if no session is started, start a new session
+	if [[ -z "$TMUX" && -z $TERMINAL_CONTEXT ]]; then
+	    (tmux -2 attach || tmux -2 new-session)
+	fi
+    fi
+}
+# start_tmux
+
+_watson_completion() {
+    local -a completions
+    local -a completions_with_descriptions
+    local -a response
+    response=("${(@f)$( env COMP_WORDS="${words[*]}" \
+			COMP_CWORD=$((CURRENT-1)) \
+			_WATSON_COMPLETE="complete_zsh" \
+			watson )}")
+
+    for key descr in ${(kv)response}; do
+      if [[ "$descr" == "_" ]]; then
+	  completions+=("$key")
+      else
+	  completions_with_descriptions+=("$key":"$descr")
+      fi
+    done
+
+    if [ -n "$completions_with_descriptions" ]; then
+	_describe -V unsorted completions_with_descriptions -U -Q
+    fi
+
+    if [ -n "$completions" ]; then
+	compadd -U -V unsorted -Q -a completions
+    fi
+    compstate[insert]="automenu"
+}
+
+# Zoxide stuff
+eval "$(zoxide init zsh)"
+
+autoload -U compinit
+compinit -C

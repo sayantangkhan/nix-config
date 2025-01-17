@@ -1,0 +1,28 @@
+#This is the bash aliases file.
+# All aliases should be placed here.
+
+#Reliable file downloading
+alias wgetc="wget -c -t inf"
+
+# tmux unicode support
+alias tmux="tmux -u"
+
+# Alias emacsclient
+alias ec="emacsclient -n -c"
+alias ect="emacsclient -nw -c"
+
+# Aliases for VPN
+alias up_vpn="sudo wg-quick up wg0-client"
+alias down_vpn="sudo wg-quick down wg0-client"
+
+# Alias for ssh SOCKS proxy
+#alias activate_proxy="ssh -o ServerAliveInterval=60 -N sayantan@wireguard-t420s -D 8080 -vv"
+
+# Forward Jupyter ports
+#alias forward_jupyter_port="ssh -N -L 8000:localhost:8000 sayantan@wireguard-t420s"
+
+# Quick pass
+alias qpass="/home/sayantan/Sync/configs/xps13-workstation/scripts/password-prompt.sh"
+
+# Sync mail
+# alias sync_mail="mbsync -c ~/.emacs.d/mu4e/mbsyncrc -a"

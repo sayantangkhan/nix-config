@@ -1,0 +1,12 @@
+[core]
+	editor = "vim"
+
+[credential]
+	helper = "cache --timeout=86400"
+
+[user]
+	email = "sayantangkhan@gmail.com"
+	name = "Sayantan Khan"
+
+[pull]
+	rebase = false

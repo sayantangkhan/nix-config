@@ -1,0 +1,9 @@
+[Unit]
+Description=Org to Things
+After=network.target
+
+[Service]
+ExecStart=/home/sayantan/home-manager-nix/org-to-things-service/pandoc_script.sh
+
+[Install]
+WantedBy=default.target

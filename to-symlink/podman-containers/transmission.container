@@ -1,0 +1,26 @@
+[Unit]
+Description=The transmission container
+After=local-fs.target
+
+[Container]
+Image=lscr.io/linuxserver/transmission:latest
+ContainerName=transmission
+Volume=/home/sayantan/seedbox/config:/config
+Volume=/home/sayantan/seedbox/downloads:/downloads
+Volume=/home/sayantan/seedbox/watch:/watch
+PodmanArgs=--privileged -d -p 9091:9091 -p 51413:51413 -p 51413:51413/udp 
+
+[Service]
+Environment=PUID=1000
+Environment=PGID=1000
+Environment=TZ=Etc/UTC 
+Environment=TRANSMISSION_WEB_HOME= `#optional`
+Environment=USER= `#optional`
+Environment=PASS= `#optional`
+Environment=WHITELIST= `#OPTIONAL`
+Environment=PEERPORT= `#optional`
+Environment=HOST_WHITELIST= `#optional`
+
+[Install]
+# Start by default on boot
+WantedBy=multi-user.target default.target

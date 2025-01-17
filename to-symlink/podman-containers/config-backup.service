@@ -1,0 +1,6 @@
+[Unit]
+Description=Config backup script
+
+[Service]
+Type= oneshot
+ExecStart= /home/sayantan/home-manager-nix/scripts/config-backups.sh

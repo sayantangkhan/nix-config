@@ -1,0 +1,6 @@
+[Unit]
+Description=Btrfs balance script
+
+[Service]
+Type= oneshot
+ExecStart= /bin/bash /home/sayantan/Sync/configs/t420s-workstation/scripts/btrfs-balance.sh

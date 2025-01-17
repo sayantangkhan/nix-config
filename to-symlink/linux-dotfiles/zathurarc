@@ -1,0 +1,8 @@
+set selection-clipboard clipboard
+map = zoom in
+map + zoom default
+map <PageDown> scroll half-down
+map <PageUp> scroll half-up
+map <Left> scroll full-up
+map <Right> scroll full-down
+

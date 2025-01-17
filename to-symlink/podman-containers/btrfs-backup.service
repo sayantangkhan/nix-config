@@ -1,0 +1,6 @@
+[Unit]
+Description=Btrfs backup script
+
+[Service]
+Type= oneshot
+ExecStart= sudo /home/sayantan/.nix-profile/bin/btrbk -c /home/sayantan/home-manager-nix/btrbk.conf -v run

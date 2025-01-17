@@ -1,22 +1,19 @@
 { config, pkgs, ... }:
 
 {
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  # Home Manager needs a bit of information about you and the paths it should
+  # manage.
+  home.username = "sayantan";
+  home.homeDirectory = "/home/sayantan";
 
-  home.stateVersion = "18.09";
+  home.stateVersion = "24.11"; # Please read the comment before changing.
 
   # Do not display news
   news.display = "silent";
 
-  targets.genericLinux.enable = true;
+  programs.home-manager.enable = true;
 
-  # Defining the community Emacs overlay
-  nixpkgs.overlays = [
-    (prev: final: {
-      localPackages = import ./pkgs { inherit pkgs; };
-    })
-  ];
+  targets.genericLinux.enable = true;
 
   services = {
     # Emacs server
@@ -29,136 +26,126 @@
     };
   };
 
-  home.file = {
 
+  home.file = {
     "jellyfin-service" = {
-      source = "/home/sayantan/home-manager-nix/podman-systemd/jellyfin.container";
-      target = ".config/containers/systemd/jellyfin.container";
+      source = ./to-symlink/podman-containers/jellyfin.container;
+      target = "/home/sayantan/.config/containers/systemd/jellyfin.container";
     };
 
     "homepage-service" = {
-      source = "/home/sayantan/home-manager-nix/podman-systemd/homepage.container";
-      target = ".config/containers/systemd/homepage.container";
+      source = ./to-symlink/podman-containers/homepage.container;
+      target = "/home/sayantan/.config/containers/systemd/homepage.container";
     };
 
     "podgrab-service" = {
-      source = "/home/sayantan/home-manager-nix/podman-systemd/podgrab.container";
-      target = ".config/containers/systemd/podgrab.container";
+      source = ./to-symlink/podman-containers/podgrab.container;
+      target = "/home/sayantan/.config/containers/systemd/podgrab.container";
     };
 
-    #"transmission-service" = {
-    #  source = "/home/sayantan/home-manager-nix/podman-systemd/transmission.container";
-    #  target = ".config/containers/systemd/transmission.container";
-    #};
-
-    "org-to-things.service" = {
-      source = "/home/sayantan/home-manager-nix/podman-systemd/org-to-things.service";
-      target = ".config/systemd/user/org-to-things.service";
-    };
+    # "org-to-things.service" = {
+    #   source = ./to-symlink/podman-containers/org-to-things.service;
+    #   target = "/home/sayantan/.config/systemd/user/org-to-things.service";
+    # };
 
     "btrfs-balance.service" = {
-      source = "/home/sayantan/home-manager-nix/podman-systemd/btrfs-balance.service";
-      target = ".config/systemd/user/btrfs-balance.service";
+      source = ./to-symlink/podman-containers/btrfs-balance.service;
+      target = "/home/sayantan/.config/systemd/user/btrfs-balance.service";
     };
 
     "btrfs-balance.timer" = {
-      source = "/home/sayantan/home-manager-nix/podman-systemd/btrfs-balance.timer";
-      target = ".config/systemd/user/btrfs-balance.timer";
+      source = ./to-symlink/podman-containers/btrfs-balance.timer;
+      target = "/home/sayantan/.config/systemd/user/btrfs-balance.timer";
     };
 
     "btrfs-backup.service" = {
-      source = "/home/sayantan/home-manager-nix/podman-systemd/btrfs-backup.service";
-      target = ".config/systemd/user/btrfs-backup.service";
+      source = ./to-symlink/podman-containers/btrfs-backup.service;
+      target = "/home/sayantan/.config/systemd/user/btrfs-backup.service";
     };
 
     "btrfs-backup.timer" = {
-      source = "/home/sayantan/home-manager-nix/podman-systemd/btrfs-backup.timer";
-      target = ".config/systemd/user/btrfs-backup.timer";
+      source = ./to-symlink/podman-containers/btrfs-backup.timer;
+      target = "/home/sayantan/.config/systemd/user/btrfs-backup.timer";
     };
 
     "config-backup.service" = {
-      source = "/home/sayantan/home-manager-nix/podman-systemd/config-backup.service";
-      target = ".config/systemd/user/config-backup.service";
+      source = ./to-symlink/podman-containers/config-backup.service;
+      target = "/home/sayantan/.config/systemd/user/config-backup.service";
     };
 
     "config-backup.timer" = {
-      source = "/home/sayantan/home-manager-nix/podman-systemd/config-backup.timer";
-      target = ".config/systemd/user/config-backup.timer";
-    };
-
-    "zathurarc" = {
-      source = "/home/sayantan/home-manager-nix/files/zathurarc";
-      target = ".config/zathura/zathurarc";
+      source = ./to-symlink/podman-containers/config-backup.timer;
+      target = "/home/sayantan/.config/systemd/user/config-backup.timer";
     };
 
     "git-config" = {
-      source = "/home/sayantan/home-manager-nix/files/git-config";
-      target = ".config/git/config";
+      source = ./to-symlink/linux-dotfiles/git-config;
+      target = "/home/sayantan/.config/git/config";
     };
 
     "latexmkrc" = {
-      source = "/home/sayantan/home-manager-nix/files/latexmkrc";
-      target = ".latexmkrc";
+      source = ./to-symlink/linux-dotfiles/latexmkrc;
+      target = "/home/sayantan/.latexmkrc";
     };
 
     "bash_aliases" = {
-      source = "/home/sayantan/home-manager-nix/files/bash_aliases";
-      target = ".bash_aliases";
+      source = ./to-symlink/linux-dotfiles/bash_aliases;
+      target = "/home/sayantan/.bash_aliases";
     };
 
     "alacritty-config" = {
-      source = "/home/sayantan/home-manager-nix/files/alacritty.yml";
+      source = ./to-symlink/linux-dotfiles/alacritty.yml;
       target = "/home/sayantan/.config/alacritty/alacritty.yml";
     };
 
     #"zfunc" = {
     #  recursive = true;
-    #  source = "/home/sayantan/home-manager-nix/files/zfunc";
+    #  source = "./to-symlink/linux-dotfiles/zfunc";
     #  target = ".zfunc";
     #};
 
     "zprezto" = {
       recursive = true;
-      source = "/home/sayantan/home-manager-nix/files/zprezto";
-      target = ".zprezto";
+      source = ./to-symlink/linux-dotfiles/zprezto;
+      target = "/home/sayantan/.zprezto";
     };
 
     "zlogin" = {
-      source = "/home/sayantan/home-manager-nix/files/zprezto/runcoms/zlogin";
-      target = ".zlogin";
+      source = ./to-symlink/linux-dotfiles/zprezto/runcoms/zlogin;
+      target = "/home/sayantan/.zlogin";
     };
 
     "zlogout" = {
-      source = "/home/sayantan/home-manager-nix/files/zprezto/runcoms/zlogout";
-      target = ".zlogout";
+      source = ./to-symlink/linux-dotfiles/zprezto/runcoms/zlogout;
+      target = "/home/sayantan/.zlogout";
     };
 
 
     "zpreztorc" = {
-      source = "/home/sayantan/home-manager-nix/files/zprezto/runcoms/zpreztorc";
-      target = ".zpreztorc";
+      source = ./to-symlink/linux-dotfiles/zprezto/runcoms/zpreztorc;
+      target = "/home/sayantan/.zpreztorc";
     };
 
 
     "zprofile" = {
-      source = "/home/sayantan/home-manager-nix/files/zprezto/runcoms/zprofile";
-      target = ".zprofile";
+      source = ./to-symlink/linux-dotfiles/zprezto/runcoms/zprofile;
+      target = "/home/sayantan/.zprofile";
     };
 
 
     "zshenv" = {
-      source = "/home/sayantan/home-manager-nix/files/zprezto/runcoms/zshenv";
-      target = ".zshenv";
+      source = ./to-symlink/linux-dotfiles/zprezto/runcoms/zshenv;
+      target = "/home/sayantan/.zshenv";
     };
 
 
     "zshrc" = {
-      source = "/home/sayantan/home-manager-nix/files/zprezto/runcoms/zshrc";
-      target = ".zshrc";
+      source = ./to-symlink/linux-dotfiles/zprezto/runcoms/zshrc;
+      target = "/home/sayantan/.zshrc";
     };
 
     "gpg-agent" = {
-      source = "/home/sayantan/Sync/configs/t420s-workstation/files/gpg-agent.conf";
+      source = ./to-symlink/linux-dotfiles/gpg-agent.conf;
       target = "/home/sayantan/.gnupg/gpg-agent.conf";
     };
 
@@ -172,26 +159,6 @@
       #ps.scipy
       #ps.pandas
     ]));
-
-    jupyterWithStuff = pkgs.jupyter.override {
-      definitions = {
-        python3 = let
-          env = pythonEnv;
-        in {
-          displayName = "Python 3";
-          argv = [
-            "${env.interpreter}"
-            "-m"
-            "ipykernel_launcher"
-            "-f"
-            "{connection_file}"
-          ];
-          language = "python";
-          logo32 = "${env.sitePackages}/ipykernel/resources/logo-32x32.png";
-          logo64 = "${env.sitePackages}/ipykernel/resources/logo-64x64.png";
-        };
-      };
-    };
 
     # Link into ipythonEnv package to avoid polluting $PATH with python deps
     # ipythonPackage = pkgs.runCommand "ipython-stripped" {} ''
@@ -243,53 +210,51 @@
     # aspellDicts.en-computers
     # aspellDicts.en-science
 
+    # Shell scripts
+    (writeShellScriptBin "nix-switch" (builtins.readFile ./to-symlink/scripts/nix-switch-darwin.sh))
+    (writeShellScriptBin "nix-update" (builtins.readFile ./to-symlink/scripts/nix-update-and-switch-darwin.sh))
+    (writeShellScriptBin "all-update" (builtins.readFile ./to-symlink/scripts/update-all-darwin.sh))
+    (writeShellScriptBin "qpass" (builtins.readFile ./to-symlink/scripts/password-prompt.sh))
+    (writeShellScriptBin "spass" (builtins.readFile ./to-symlink/scripts/password-prompt-no-copy.sh))
+
+
   ];
 
   programs = {
 
-    emacs = {
-      enable = true;
-      package = pkgs.localPackages.emacs;
-    };
-
-    # emacs = {
-    #   enable = true;
-    #   extraPackages = epkgs: (with epkgs; [
-    #     monokai-theme
-    #     magit
-    #     bind-key
-    #     use-package
-    #     # dashboard
-    #     yasnippet
-    #     evil
-    #     evil-nerd-commenter
-    #     evil-leader
-    #     helm
-    #     markdown-mode
-    #     auctex-latexmk
-    #     all-the-icons
-    #     nix-mode
-    #     auctex
-    #     elpy
-    #     flycheck
-    #     blacken
-    #     # rustic
-    #     company
-    #     # lsp-mode
-    #     # lsp-ui
-    #     # hydra
-    #     # company-lsp
-    #     # helm-lsp
-    #     smartparens
-    #   ]) ++ (let
-    #     pythonEnv = (pkgs.python3.withPackages (ps: [
-    #       ps.pip
-    #       ps.black
-    #       ps.ipython
-    #       ps.flake8
-    #     ]));
-    #   in [pythonEnv]);
-    # };
+    emacs = with pkgs; let
+      myEmacs = emacs.pkgs.withPackages (epkgs: (with epkgs; [
+          monokai-theme
+          twilight-bright-theme
+          bind-key
+          undo-tree
+          async
+          separedit
+          flycheck
+          nix-mode
+          magit
+          use-package
+          dashboard
+          yasnippet
+          evil
+          evil-nerd-commenter
+          evil-leader
+          helm
+          markdown-mode
+          auctex
+          auctex-latexmk
+          smartparens
+          all-the-icons
+          haskell-mode
+          reformatter
+          haskell-snippets
+          ormolu
+      ]));
+    in
+      {
+        enable = true;
+        package = myEmacs;
+      };
 
     tmux = {
       enable = true;

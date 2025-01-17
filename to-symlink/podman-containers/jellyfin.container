@@ -1,0 +1,20 @@
+[Unit]
+Description=The jellyfin container
+After=local-fs.target
+
+[Container]
+Image=docker.io/jellyfin/jellyfin:latest
+ContainerName=jellyfin
+Volume=/home/sayantan/configs/jellyfin:/config
+Volume=/home/sayantan/.cache/jellyfin:/cache
+Volume=/Vault2048/Videos:/media
+Volume=/Vault2048:/Vault2048
+PodmanArgs=--privileged -d --net=host
+
+[Service]
+Environment=PUID=1000
+Environment=PGID=1000
+
+[Install]
+# Start by default on boot
+WantedBy=multi-user.target default.target
