@@ -13,7 +13,7 @@
       taps = [];
       brews = [];
       casks = [
-        "emacs"
+        # "emacs"
         "ghostty"
         "gnucash"
         "font-source-code-pro"

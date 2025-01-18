@@ -29,6 +29,33 @@
       #ps.scipy
       #ps.pandas
     ]));
+    myEmacs = emacs.pkgs.withPackages (epkgs: (with epkgs; [
+      monokai-theme
+      twilight-bright-theme
+      bind-key
+      undo-tree
+      async
+      separedit
+      flycheck
+      nix-mode
+      magit
+      use-package
+      dashboard
+      yasnippet
+      evil
+      evil-nerd-commenter
+      evil-leader
+      helm
+      markdown-mode
+      auctex
+      auctex-latexmk
+      smartparens
+      all-the-icons
+      haskell-mode
+      reformatter
+      haskell-snippets
+      ormolu
+    ]));
 
   in [
 
@@ -37,6 +64,8 @@
 
     # Jupyter with extra packages
     # jupyterWithStuff
+
+    myEmacs
 
     # Useful CLI utilities
     wget
@@ -89,11 +118,11 @@
       };
      extraConfig = {
        core = {
-	 editor = "vim";
-	 # whitespace = "trailing-space,space-before-tab";
+   editor = "vim";
+   # whitespace = "trailing-space,space-before-tab";
        };
        credential = {
-	 helper = "cache --timeout=86400";
+   helper = "cache --timeout=86400";
        };
      };
     };
@@ -105,47 +134,47 @@
     tmux = {
       enable = true;
       extraConfig =
-	''
-	# Prefix key.
-	set -g prefix C-a
-	unbind C-b
-	bind C-a send-prefix
+  ''
+  # Prefix key.
+  set -g prefix C-a
+  unbind C-b
+  bind C-a send-prefix
 
-	# Keys to switch session.
-	bind Q switchc -t0
-	bind W switchc -t1
-	bind E switchc -t2
+  # Keys to switch session.
+  bind Q switchc -t0
+  bind W switchc -t1
+  bind E switchc -t2
 
-	#setw -g utf8 on
-	#set -g status-utf8 on
+  #setw -g utf8 on
+  #set -g status-utf8 on
 
-	# Customized keybindings
-	unbind %
-	bind > split-window -h -c '#{pane_current_path}'
-	bind < split-window -v -c '#{pane_current_path}'
-	bind c new-window -c "#{pane_current_path}"
+  # Customized keybindings
+  unbind %
+  bind > split-window -h -c '#{pane_current_path}'
+  bind < split-window -v -c '#{pane_current_path}'
+  bind c new-window -c "#{pane_current_path}"
 
-	#setw -g automatic-rename
+  #setw -g automatic-rename
 
-	#set-option -g set-titles on
-	#set-option -g set-titles-string '#S:#I.#P #W'
-	#set-window-option -g automatic-rename on
+  #set-option -g set-titles on
+  #set-option -g set-titles-string '#S:#I.#P #W'
+  #set-window-option -g automatic-rename on
 
-	set -g allow-rename on
+  set -g allow-rename on
 
-	# if run as "tmux attach", create a session if one does not already exist
-	new-session
+  # if run as "tmux attach", create a session if one does not already exist
+  new-session
 
-	# terminal colors
-	set -g default-terminal "screen-256color"
+  # terminal colors
+  set -g default-terminal "screen-256color"
 
-	# Other customizations
-	set -g status-bg black
-	set -g status-fg white
+  # Other customizations
+  set -g status-bg black
+  set -g status-fg white
 
-	# Repeat timings
-	set-option repeat-time 100
-	'';
+  # Repeat timings
+  set-option repeat-time 100
+  '';
     };
   };
 

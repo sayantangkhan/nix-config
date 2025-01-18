@@ -58,6 +58,7 @@ alias fix_term="export TERM=xterm-256color"
 # Alias emacsclient
 alias ec="emacsclient -n -c"
 alias ect="emacsclient -nw -c"
+alias ec_start="emacsclient -c -a \"\""
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
