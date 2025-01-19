@@ -49,8 +49,8 @@
     };
 
     "alacritty-config" = {
-      source = ./to-symlink/linux-dotfiles/alacritty.yml;
-      target = "/home/sayantan/.config/alacritty/alacritty.yml";
+      source = ./to-symlink/linux-dotfiles/alacritty.toml;
+      target = "/home/sayantan/.config/alacritty/alacritty.toml";
     };
 
     "zprezto" = {
