@@ -27,3 +27,6 @@ rustup update
 
 # Lean toolchain update
 echo "Updating Lean toolchain"
+
+echo "Getting list of firmware update"
+fwupdmgr get-updates
