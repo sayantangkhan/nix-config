@@ -72,10 +72,10 @@ code --install-extension vscodevim.vim
 code --install-extension haskell.haskell
 code --install-extension hoovercj.haskell-linter
 #+END_SRC
-** Zoom
+** TODO Zoom
 ** itsyCal
-** TODO Magnet?
-** TODO UTM
+** Magnet?
+** UTM
 * Services
 ** DONE Syncthing
 - Install official Mac image from website.

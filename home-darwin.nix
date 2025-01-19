@@ -87,6 +87,7 @@
     (writeShellScriptBin "nix-switch" (builtins.readFile ./to-symlink/scripts/nix-switch-darwin.sh))
     (writeShellScriptBin "nix-update" (builtins.readFile ./to-symlink/scripts/nix-update-and-switch-darwin.sh))
     (writeShellScriptBin "all-update" (builtins.readFile ./to-symlink/scripts/update-all-darwin.sh))
+    (writeShellScriptBin "symlink-nix-applications" (builtins.readFile ./to-symlink/scripts/nix-gui-app-macos.sh))
     (writeShellScriptBin "qpass" (builtins.readFile ./to-symlink/scripts/password-prompt.sh))
     (writeShellScriptBin "spass" (builtins.readFile ./to-symlink/scripts/password-prompt-no-copy.sh))
 

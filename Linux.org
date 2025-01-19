@@ -1,0 +1,22 @@
+#+STARTUP: indent
+#+STARTUP: overview
+#+TITLE: Guide to setting up my Linux machines
+
+* Common
+** Set up hostname
+** Set up Tailscale
+** Set up Nix
+- Install Nix, with flakes enabled: use the determinate systems installer.
+- Clone the flakes repository.
+- Switch into the home-manager config specified by the flake.
+** Set up syncthing
+ - Update ~/etc/hosts~
+ - Set it up to sync ~/home/sayantan/Sync~.
+** Other non-nix managed toolchains
+- [ ] Rust
+- [ ] Lean
+* Server specific
+** Ensure all of the web services are running
+* Workstation specific
+
+* VM specific
