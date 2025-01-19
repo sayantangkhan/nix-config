@@ -40,7 +40,10 @@
         {
           "sayantan@t420s-server" = home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
-            modules = [ ./home-linux-t420s.nix ];
+            modules = [ 
+              ./home-linux-t420s.nix
+              ./emacs.nix
+              ];
           };
         };
 
