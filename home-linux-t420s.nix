@@ -26,7 +26,6 @@
     };
   };
 
-
   home.file = {
     "jellyfin-service" = {
       source = ./to-symlink/podman-containers/jellyfin.container;
@@ -79,8 +78,8 @@
     };
 
     "btrbk-config" = {
-       source = ./to-symlink/linux-dotfiles/btrbk-t420s.conf;
-       target = "/home/sayantan/.config/btrbk/btrbk.conf";
+      source = ./to-symlink/linux-dotfiles/btrbk-t420s.conf;
+      target = "/home/sayantan/.config/btrbk/btrbk.conf";
     };
 
     "git-config" = {
@@ -125,24 +124,20 @@
       target = "/home/sayantan/.zlogout";
     };
 
-
     "zpreztorc" = {
       source = ./to-symlink/linux-dotfiles/zprezto/runcoms/zpreztorc;
       target = "/home/sayantan/.zpreztorc";
     };
-
 
     "zprofile" = {
       source = ./to-symlink/linux-dotfiles/zprezto/runcoms/zprofile;
       target = "/home/sayantan/.zprofile";
     };
 
-
     "zshenv" = {
       source = ./to-symlink/linux-dotfiles/zprezto/runcoms/zshenv;
       target = "/home/sayantan/.zshenv";
     };
-
 
     "zshrc" = {
       source = ./to-symlink/linux-dotfiles/zprezto/runcoms/zshrc;
@@ -156,72 +151,76 @@
 
   };
 
-  home.packages = with pkgs; let
-    pythonEnv = (python3.withPackages (ps: [
-      ps.ipython
-      #ps.numpy
-      #ps.matplotlib
-      #ps.scipy
-      #ps.pandas
-    ]));
+  home.packages = with pkgs;
+    let
+      pythonEnv = (python3.withPackages (ps:
+        [
+          ps.ipython
+          #ps.numpy
+          #ps.matplotlib
+          #ps.scipy
+          #ps.pandas
+        ]));
 
-    # Link into ipythonEnv package to avoid polluting $PATH with python deps
-    # ipythonPackage = pkgs.runCommand "ipython-stripped" {} ''
+      # Link into ipythonEnv package to avoid polluting $PATH with python deps
+      # ipythonPackage = pkgs.runCommand "ipython-stripped" {} ''
       # mkdir -p $out/bin
       # ln -s ${ipythonEnv}/bin/ipython $out/bin/ipython
-    # '';
-  in [
+      # '';
+    in [
 
-    # Python with extra packages
-    pythonEnv
+      # Python with extra packages
+      pythonEnv
 
-    # Jupyter with extra packages
-    # jupyterWithStuff
+      # Jupyter with extra packages
+      # jupyterWithStuff
 
-    # Useful CLI utilities
-    wget
-    vim
-    ripgrep
-    #pass
-    #git
-    tree
-    htop
-    tmux
-    unzip
-    pdftk
-    imagemagick
-    #watson
-    borgbackup
-    fzf
-    zoxide
-    #guile
-    #ctags
-    #cabal2nix
-    #cachix
-    yt-dlp
-    ffmpeg
-    btrbk
-    pandoc
+      # Useful CLI utilities
+      wget
+      vim
+      ripgrep
+      #pass
+      #git
+      tree
+      htop
+      tmux
+      unzip
+      pdftk
+      imagemagick
+      #watson
+      borgbackup
+      fzf
+      zoxide
+      #guile
+      #ctags
+      #cabal2nix
+      #cachix
+      yt-dlp
+      ffmpeg
+      btrbk
+      pandoc
 
-    # GUI programs
-    # zotero
+      # GUI programs
+      # zotero
 
-    # LaTeX setup. Commenting this out because it takes forever to build.
-    # texlive.combined.scheme-full
+      # LaTeX setup. Commenting this out because it takes forever to build.
+      # texlive.combined.scheme-full
 
-    # Spell check suite
-    # aspell
-    # aspellDicts.en
-    # aspellDicts.en-computers
-    # aspellDicts.en-science
+      # Spell check suite
+      # aspell
+      # aspellDicts.en
+      # aspellDicts.en-computers
+      # aspellDicts.en-science
 
-    # Shell scripts
-    (writeShellScriptBin "nix-switch" (builtins.readFile ./to-symlink/scripts/nix-switch-linux.sh))
-    (writeShellScriptBin "nix-update" (builtins.readFile ./to-symlink/scripts/nix-update-and-switch-linux.sh))
-    (writeShellScriptBin "all-update" (builtins.readFile ./to-symlink/scripts/update-all-linux.sh))
+      # Shell scripts
+      (writeShellScriptBin "nix-switch"
+        (builtins.readFile ./to-symlink/scripts/nix-switch-linux.sh))
+      (writeShellScriptBin "nix-update"
+        (builtins.readFile ./to-symlink/scripts/nix-update-and-switch-linux.sh))
+      (writeShellScriptBin "all-update"
+        (builtins.readFile ./to-symlink/scripts/update-all-linux.sh))
 
-
-  ];
+    ];
 
   programs = {
 
@@ -261,8 +260,7 @@
 
     tmux = {
       enable = true;
-      extraConfig =
-        ''
+      extraConfig = ''
         # Prefix key.
         set -g prefix C-a
         unbind C-b
@@ -302,7 +300,7 @@
 
         # Repeat timings
         set-option repeat-time 100
-        '';
+      '';
     };
 
     # zathura = {

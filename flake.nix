@@ -36,16 +36,12 @@
     homeConfigurations = let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      in
-        {
-          "sayantan@t420s-server" = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            modules = [ 
-              ./home-linux-t420s.nix
-              ./emacs.nix
-              ];
-          };
-        };
+    in {
+      "sayantan@t420s-server" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [ ./home-linux-t420s.nix ./emacs.nix ];
+      };
+    };
 
   };
 }
