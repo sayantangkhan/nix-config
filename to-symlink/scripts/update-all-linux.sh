@@ -2,7 +2,7 @@
 
 # Back up home directory
 echo "Backing up before updating"
-sudo --preserve-env=PATH env btrbk -c /home/sayantan/.configs/btrbk/btrbk.conf -v run
+sudo --preserve-env=PATH env btrbk -c /home/sayantan/.config/btrbk/btrbk.conf -v run
 echo "Finished backup"
 sleep 2
 
