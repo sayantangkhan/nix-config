@@ -9,6 +9,9 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
+  # Overlay notes
+  # https://fasterthanli.me/series/building-a-rust-service-with-nix has an example of how to do overlays with flakes
+
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }: {
     darwinConfigurations."Sayantans-Mac-mini" = nix-darwin.lib.darwinSystem {
       modules = [

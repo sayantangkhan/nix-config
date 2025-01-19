@@ -16,8 +16,6 @@
 
   # nixpkgs.config.allowUnfree = true;
 
-
-
   services = {
     # Syncthing
     syncthing.enable = true;
@@ -26,7 +24,6 @@
   home.file = {
 
     # Single file configs
-
 
     "btrbk-config" = {
       source = ./to-symlink/linux-dotfiles/btrbk-xps13.conf;
@@ -96,61 +93,62 @@
 
   };
 
-  home.packages = with pkgs; let
-    pythonEnv = (python3.withPackages (ps: [
-      ps.ipython
-      # ps.numpy
-      #ps.matplotlib
-      #ps.scipy
-      #ps.pandas
-    ]));
+  home.packages = with pkgs;
+    let
+      pythonEnv = (python3.withPackages (ps:
+        [
+          ps.ipython
+          # ps.numpy
+          #ps.matplotlib
+          #ps.scipy
+          #ps.pandas
+        ]));
 
-  in [
+    in [
 
-    # Python with extra packages
-    pythonEnv
+      # Python with extra packages
+      pythonEnv
 
-    # Useful CLI utilities
-    wget
-    vim
-    pass
-    tree
-    htop
-    unzip
-    pdftk
-    imagemagick
-    fzf
-    zoxide
-    ripgrep
-    # Time tracker
-    # watson
+      # Useful CLI utilities
+      wget
+      vim
+      pass
+      tree
+      htop
+      unzip
+      pdftk
+      imagemagick
+      fzf
+      zoxide
+      ripgrep
+      # Time tracker
+      # watson
 
-    # GUI programs
-    #zotero
-    #transmission-gtk
+      # GUI programs
+      #zotero
+      #transmission-gtk
 
-    # LaTeX setup. Commenting this out because it takes forever to build.
-    # texlive.combined.scheme-full
+      # LaTeX setup. Commenting this out because it takes forever to build.
+      # texlive.combined.scheme-full
 
-    # Spell check suite
-    # aspell
-    # aspellDicts.en
-    # aspellDicts.en-computers
-    # aspellDicts.en-science
-    (aspellWithDicts (dicts: with dicts; [ en en-computers]))
+      # Spell check suite
+      # aspell
+      # aspellDicts.en
+      # aspellDicts.en-computers
+      # aspellDicts.en-science
+      (aspellWithDicts (dicts: with dicts; [ en en-computers ]))
 
+      # Shell scripts
+      (writeShellScriptBin "nix-switch"
+        (builtins.readFile ./to-symlink/scripts/nix-switch-linux.sh))
+      (writeShellScriptBin "nix-update"
+        (builtins.readFile ./to-symlink/scripts/nix-update-and-switch-linux.sh))
+      (writeShellScriptBin "all-update"
+        (builtins.readFile ./to-symlink/scripts/update-all-linux.sh))
+      (writeShellScriptBin "btrbk-remote-backup"
+        (builtins.readFile ./to-symlink/scripts/linux-remote-backup.sh))
 
-    # Shell scripts
-    (writeShellScriptBin "nix-switch"
-    (builtins.readFile ./to-symlink/scripts/nix-switch-linux.sh))
-    (writeShellScriptBin "nix-update"
-    (builtins.readFile ./to-symlink/scripts/nix-update-and-switch-linux.sh))
-    (writeShellScriptBin "all-update"
-    (builtins.readFile ./to-symlink/scripts/update-all-linux.sh))
-    (writeShellScriptBin "btrbk-remote-backup"
-    (builtins.readFile ./to-symlink/scripts/linux-remote-backup.sh))
-
-  ];
+    ];
 
   programs = {
 
@@ -158,24 +156,19 @@
       enable = true;
       userName = "Sayantan Khan";
       userEmail = "sayantangkhan@gmail.com";
-      aliases = {
-      co = "checkout";
+      aliases = { co = "checkout"; };
+      extraConfig = {
+        core = {
+          editor = "vim";
+          # whitespace = "trailing-space,space-before-tab";
+        };
+        credential = { helper = "cache --timeout=86400"; };
       };
-     extraConfig = {
-       core = {
-         editor = "vim";
-         # whitespace = "trailing-space,space-before-tab";
-       };
-       credential = {
-         helper = "cache --timeout=86400";
-       };
-     };
     };
 
     tmux = {
       enable = true;
-      extraConfig =
-        ''
+      extraConfig = ''
         # Prefix key.
         set -g prefix C-a
         unbind C-b
@@ -215,7 +208,7 @@
 
         # Repeat timings
         set-option repeat-time 100
-        '';
+      '';
     };
   };
 }
