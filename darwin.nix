@@ -16,6 +16,7 @@
       "ghostty"
       "gnucash"
       "font-source-code-pro"
+      "vlc"
     ];
   };
 
