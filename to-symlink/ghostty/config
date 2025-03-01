@@ -27,3 +27,5 @@ font-thicken = true
 font-size = 14
 
 command=/etc/profiles/per-user/sayantan/bin/tmux attach || tmux
+
+confirm-close-surface = false

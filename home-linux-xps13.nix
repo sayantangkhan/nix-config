@@ -113,6 +113,7 @@
       wget
       vim
       pass
+      pinentry
       tree
       htop
       unzip
