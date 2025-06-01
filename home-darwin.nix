@@ -82,6 +82,7 @@
       fzf
       zoxide
       ripgrep
+      tig
 
       # Nix binary cache
       cachix
