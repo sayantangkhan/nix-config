@@ -121,14 +121,16 @@
 
     git = {
       enable = true;
-      userName = "Sayantan Khan";
-      userEmail = "sayantangkhan@gmail.com";
-      aliases = { co = "checkout"; };
-      extraConfig = {
+      settings = {
         core = {
           editor = "vim";
           # whitespace = "trailing-space,space-before-tab";
         };
+        user = {
+          name = "Sayantan Khan";
+          email = "sayantangkhan@gmail.com";
+        };
+        aliass = { co = "checkout"; };
         credential = { helper = "cache --timeout=86400"; };
       };
     };
