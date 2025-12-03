@@ -113,7 +113,7 @@
       wget
       vim
       pass
-      pinentry
+      pinentry-curses
       tree
       htop
       unzip
@@ -122,6 +122,7 @@
       fzf
       zoxide
       ripgrep
+      uv
       # Time tracker
       # watson
 
