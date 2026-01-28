@@ -123,6 +123,7 @@
       zoxide
       ripgrep
       uv
+      cmake
       # Time tracker
       # watson
 
@@ -156,10 +157,12 @@
 
     git = {
       enable = true;
-      userName = "Sayantan Khan";
-      userEmail = "sayantangkhan@gmail.com";
-      aliases = { co = "checkout"; };
-      extraConfig = {
+      settings = {
+        user = {
+          name = "Sayantan Khan";
+          email = "sayantangkhan@gmail.com";
+        };
+        alias = { co = "checkout"; };
         core = {
           editor = "vim";
           # whitespace = "trailing-space,space-before-tab";

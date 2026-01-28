@@ -84,8 +84,14 @@
       ripgrep
       tig
 
+      # Simpler python package management
+      uv
+
       # Nix binary cache
       cachix
+
+      # Cmake for some rust dependencies
+      cmake
 
       # Shell scripts
       (writeShellScriptBin "nix-switch"
