@@ -36,6 +36,9 @@ path=('/Users/sayantan/.nix-profile/bin' $path)
 path=('/run/current-system/sw/bin' $path)
 path=('/nix/var/nix/profiles/default/bin' $path)
 
+# Local path
+path=('/Users/sayantan/.local/bin' $path)
+
 # Cargo path
 path=('/Users/sayantan/.cargo/bin' $path)
 

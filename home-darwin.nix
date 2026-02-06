@@ -15,7 +15,8 @@
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
-  nixpkgs.config.allowUnfree = true;
+  # Claude: commented out because home-manager.useGlobalPkgs is true; set this at system level in darwin.nix instead
+  # nixpkgs.config.allowUnfree = true;
   # nixpkgs.config.allowUnfreePredicate = (_: true);
 
   # The home.packages option allows you to install Nix packages into your
