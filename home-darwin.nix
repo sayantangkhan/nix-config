@@ -84,6 +84,7 @@
       zoxide
       ripgrep
       tig
+      watch
 
       # Simpler python package management
       uv

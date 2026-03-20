@@ -49,6 +49,10 @@
         inherit pkgs;
         modules = [ ./home-linux-xps13.nix ./emacs.nix ];
       };
+      "sayantan@tumbleweed-nas" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [ ./home-linux-tumbleweed-nas.nix ./emacs.nix ];
+      };
     };
   };
 }
