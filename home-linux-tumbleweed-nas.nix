@@ -17,7 +17,7 @@
     # Syncthing
     syncthing = {
       enable = true;
-      extraOptions = [ "--gui-address=TODO-TAILSCALE-IP:8384" ];
+      extraOptions = [ "--gui-address=100.85.197.74:8384" ];
     };
   };
 
