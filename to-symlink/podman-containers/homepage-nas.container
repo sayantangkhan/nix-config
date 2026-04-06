@@ -5,13 +5,14 @@ After=local-fs.target
 [Container]
 Image=ghcr.io/gethomepage/homepage:latest
 ContainerName=homepage
-Volume=/home/sayantan/configs/homepage:/config
+Volume=/home/sayantan/configs/homepage:/app/config
 Volume=/Vault3096:/Vault3096
 PodmanArgs=--privileged -d -p 3000:3000
-
-[Service]
 Environment=PUID=1000
 Environment=PGID=1000
+Environment=HOMEPAGE_ALLOWED_HOSTS=tumbleweed-nas.tailcc640.ts.net:3000
+
+[Service]
 
 [Install]
 # Start by default on boot
