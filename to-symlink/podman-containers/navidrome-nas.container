@@ -1,0 +1,32 @@
+[Unit]
+Description=The navidrome container
+After=local-fs.target
+
+[Container]
+Image=docker.io/deluan/navidrome:latest
+ContainerName=navidrome
+Volume=/home/sayantan/configs/navidrome:/data
+Volume=/Vault3096/Music:/music:ro
+Volume=/Vault3096/YTMusic:/ytmusic:ro
+# SELinux is Enforcing on this host. /Vault3096 is labeled samba_share_t because
+# it is shared over Samba, so a :z/:Z relabel would rewrite it to container_file_t
+# and break those shares. Disabling the label for this container avoids touching
+# host labels. (The other containers here use --privileged, which is broader.)
+SecurityLabelDisable=true
+# Tailscale-only: bind the published port to the tailscale0 address, not 0.0.0.0.
+# There is no firewall on this host, so 0.0.0.0 would also expose it to the LAN.
+PublishPort=100.85.197.74:4533:4533
+Environment=ND_MUSICFOLDER=/music
+Environment=ND_DATAFOLDER=/data
+# Quoted: quadlet splits Environment= on whitespace, so "@every 12h" needs it.
+Environment="ND_SCANSCHEDULE=@every 12h"
+Environment=ND_LOGLEVEL=info
+Environment=TZ=America/New_York
+
+[Service]
+Restart=on-failure
+RestartSec=10
+
+[Install]
+# Start by default on boot
+WantedBy=multi-user.target default.target
