@@ -138,7 +138,7 @@
           name = "Sayantan Khan";
           email = "sayantangkhan@gmail.com";
         };
-        aliass = { co = "checkout"; };
+        alias = { co = "checkout"; };
         credential = { helper = "cache --timeout=86400"; };
       };
     };
