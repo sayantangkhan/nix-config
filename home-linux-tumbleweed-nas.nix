@@ -37,6 +37,11 @@
       target = "/home/sayantan/.config/containers/systemd/podgrab.container";
     };
 
+    "navidrome-service" = {
+      source = ./to-symlink/podman-containers/navidrome-nas.container;
+      target = "/home/sayantan/.config/containers/systemd/navidrome.container";
+    };
+
     "git-config" = {
       source = ./to-symlink/linux-dotfiles/git-config;
       target = "/home/sayantan/.config/git/config";
@@ -104,6 +109,7 @@
     yt-dlp
     ffmpeg
     btrbk
+    uv
 
     # Shell scripts
     (writeShellScriptBin "nix-switch"
