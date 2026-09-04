@@ -27,7 +27,7 @@ rustup update
 echo "Updating Lean toolchain"
 if command -v elan >/dev/null 2>&1; then
 	elan self update
-	elan update
+#	elan update
 else
 	echo "elan not installed, skipping"
 fi
