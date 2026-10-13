@@ -27,12 +27,15 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Autocomplete
--- C-space: open menu, C-n/C-p: select, C-y: accept, C-e: dismiss
+-- C-space: open menu, C-n/C-p or arrows: select, Tab: accept, C-e: dismiss
 require("blink.cmp").setup({
-  keymap = { preset = "default" },
+  keymap = { preset = "super-tab" },
   completion = { documentation = { auto_show = true } },
   signature = { enabled = true },
 })
+
+-- Auto-insert the closing bracket or quote when typing the opening one
+require("nvim-autopairs").setup({})
 
 -- LSP
 -- Rust
