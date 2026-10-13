@@ -14,6 +14,8 @@
       nvim-lspconfig
       # Autocomplete
       blink-cmp
+      # Auto-insert closing brackets and quotes
+      nvim-autopairs
       # Colorscheme
       monokai-pro-nvim
       # Syntax highlighting
