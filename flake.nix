@@ -21,7 +21,9 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.sayantan = import ./home-darwin.nix;
+          home-manager.users.sayantan = {
+            imports = [ ./home-darwin.nix ./neovim.nix ];
+          };
         }
       ];
     };
@@ -32,7 +34,9 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.sayantan = import ./home-darwin.nix;
+          home-manager.users.sayantan = {
+            imports = [ ./home-darwin.nix ./neovim.nix ];
+          };
         }
       ];
     };
@@ -43,11 +47,11 @@
     in {
       "sayantan@xps13" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ ./home-linux-xps13.nix ./emacs.nix ];
+        modules = [ ./home-linux-xps13.nix ./emacs.nix ./neovim.nix ];
       };
       "sayantan@tumbleweed-nas" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ ./home-linux-tumbleweed-nas.nix ./emacs.nix ];
+        modules = [ ./home-linux-tumbleweed-nas.nix ./emacs.nix ./neovim.nix ];
       };
     };
   };
