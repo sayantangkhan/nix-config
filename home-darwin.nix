@@ -121,7 +121,7 @@
       # aspellDicts.en
       # aspellDicts.en-computers
       # aspellDicts.en-science
-      (aspellWithDicts (dicts: with dicts; [ en en-computers ]))
+      (aspellWithDicts (dicts: with dicts; [ en ]))
 
     ];
 
